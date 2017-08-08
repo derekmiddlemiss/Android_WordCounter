@@ -1,5 +1,6 @@
 package codeclan.wordcounter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,6 @@ public class WordCount extends AppCompatActivity {
 
     EditText inputEditText;
     Button button;
-    TextView outputTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,6 @@ public class WordCount extends AppCompatActivity {
 
         inputEditText = (EditText) findViewById( R.id.input_text );
         button = (Button) findViewById( R.id.count_text );
-        outputTextView = (TextView) findViewById( R.id.output_text );
 
     }
 
@@ -30,6 +29,10 @@ public class WordCount extends AppCompatActivity {
         String text = inputEditText.getText().toString();
         HashMap< String, Integer > hash = WordCounter.textToHash( text );
         String result = WordCounter.hashToString( hash );
-        outputTextView.setText( result );
+
+        Intent intent = new Intent( this, ShowCountActivity.class );
+        intent.putExtra( "result", result );
+        startActivity( intent );
+
     }
 }
