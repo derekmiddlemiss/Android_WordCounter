@@ -15,6 +15,8 @@ public abstract class WordCounter {
 
         for (String word : words ){
 
+            word = word.toLowerCase();
+
             if ( results.get( word ) == null ){
 
                 results.put( word, 1);
